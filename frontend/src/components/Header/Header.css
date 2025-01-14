@@ -12,7 +12,7 @@
     align-items: start;
     gap: 1.5vw;
     max-width: 50%;
-    bottom: 10%;
+    bottom: 15%;
     left: 6vw;
     animation: fadeIn 3s;
 }
@@ -23,7 +23,8 @@
 }
 .header-contents p{
     color: white;
-    font-size: 1vw;
+    font-size: 1.2vw;
+    line-height: 1.5;
 }
 .header-contents button{
     border: none;
