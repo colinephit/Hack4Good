@@ -12,17 +12,14 @@ const listVoucher = async (req, res) => {
   }
 };
 
-// add food
+// add voucher
 const addVoucher = async (req, res) => {
   try {
-    let image_filename = `${req.file.filename}`;
-
     const voucher = new voucherModel({
-      name: req.body.name,
+      amount: req.body.amount,
       description: req.body.description,
-      price: req.body.price,
-      category: req.body.category,
-      image: image_filename,
+      selectedUsers: req.body.selectedUsers,
+      createdAt: req.body.createdAt,
     });
 
     await voucher.save();
@@ -33,18 +30,4 @@ const addVoucher = async (req, res) => {
   }
 };
 
-// delete food
-const removeVoucher = async (req, res) => {
-  try {
-    const voucher = await voucherModel.findById(req.body.id);
-    fs.unlink(`uploads/${voucher.image}`, () => {});
-
-    await voucherModel.findByIdAndDelete(req.body.id);
-    res.json({ success: true, message: "Voucher Removed" });
-  } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
-  }
-};
-
-export { listVoucher, addVoucher, removeVoucher };
+export { listVoucher, addVoucher };

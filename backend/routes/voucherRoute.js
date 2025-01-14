@@ -1,9 +1,5 @@
 import express from "express";
-import {
-  addVoucher,
-  listVoucher,
-  removeVoucher,
-} from "../controllers/voucherController.js";
+import { addVoucher, listVoucher } from "../controllers/voucherController.js";
 import multer from "multer";
 const voucherRouter = express.Router();
 
@@ -19,7 +15,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 voucherRouter.get("/list", listVoucher);
-voucherRouter.post("/add", upload.single("image"), addVoucher);
-voucherRouter.post("/remove", removeVoucher);
+voucherRouter.post("/add", addVoucher);
 
 export default voucherRouter;

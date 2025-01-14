@@ -8,11 +8,11 @@ const Menu = () => {
     <div className="menu">
       <div className="menu-options">
         <NavLink to="/vouchers/voucherlist" className="menu-option">
-          <img src={assets.order_icon} alt="" />
+          <img src={assets.history_icon} alt="" />
           <p>Voucher History</p>
         </NavLink>
         <NavLink to="/vouchers/addvoucher" className="menu-option">
-          <img src={assets.order_icon} alt="" />
+          <img src={assets.add_icon} alt="" />
           <p>Issue Voucher</p>
         </NavLink>
       </div>

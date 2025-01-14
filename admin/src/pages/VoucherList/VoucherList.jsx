@@ -50,14 +50,12 @@ const VoucherList = () => {
                 </p>
                 <p>{item.description || "No description"}</p>
                 {/* Handle displaying users */}
-                <p>{item.description || "No description"}</p>
-                {/* Show number of users, and on click show the list of users */}
                 <p
                   className="user-count"
                   onClick={() => handleUserClick(item.users)}
                   style={{ cursor: "pointer", color: "#007bff" }}
                 >
-                  {item.users?.length || 0} users
+                  {item.users?.length || 0}
                 </p>
                 <p>{new Date(item.createdAt).toLocaleDateString()}</p>{" "}
                 {/* Format date */}
