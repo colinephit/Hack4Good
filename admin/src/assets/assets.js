@@ -7,6 +7,7 @@ import parcel_icon from "./parcel_icon.png";
 import voucher_icon from "./voucher_icon.webp";
 import history_icon from "./history_icon.png";
 import inventory from "./inventory.png";
+import user_new from "./user_new.png";
 
 export const url = "http://localhost:4000";
 export const currency = "$";
@@ -20,4 +21,5 @@ export const assets = {
   voucher_icon,
   history_icon,
   inventory,
+  user_new,
 };

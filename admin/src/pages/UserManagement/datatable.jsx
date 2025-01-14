@@ -32,17 +32,19 @@ import {
   TableRow,
 } from "../../components/ui/table";
 
+
+// should take the data from the backend? or maybe have data that is mutable
 const data = [
   {
     id: "m5gr84i9",
     amount: 316,
-    status: "success",
+    status: "active",
     email: "ken99@yahoo.com",
   },
   {
     id: "3u1reuv4",
     amount: 242,
-    status: "success",
+    status: "active",
     email: "Abe45@gmail.com",
   },
   {
@@ -54,13 +56,13 @@ const data = [
   {
     id: "5kma53ae",
     amount: 874,
-    status: "success",
+    status: "active",
     email: "Silas22@gmail.com",
   },
   {
     id: "bhqecj4p",
     amount: 721,
-    status: "failed",
+    status: "banned",
     email: "carmella@hotmail.com",
   },
 ];
@@ -112,7 +114,7 @@ const columns = [
   },
   {
     accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    header: () => <div className="text-right">Voucher Credit</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"));
 

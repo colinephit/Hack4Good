@@ -2,7 +2,7 @@ import React from 'react'
 import './Inventory.css'
 import { DataTableDemo } from './datatable';
 
-const Inventory = () => {
+const UserManagement = () => {
   return (
     <div className="container mx-auto py-10">
     <DataTableDemo />
@@ -10,4 +10,4 @@ const Inventory = () => {
   )
 }
 
-export default Inventory
+export default UserManagement
