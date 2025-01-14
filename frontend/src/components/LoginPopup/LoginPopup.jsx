@@ -40,6 +40,8 @@ const LoginPopup = ({ setShowLogin }) => {
                 // Redirect based on role
                 if (response.data.role === "admin") {
                     window.location.href = "/admin"; // Redirect to admin panel
+                } else {
+                    window.location.href = "/"
                 }
             } else {
                 toast.error(response.data.message);
@@ -75,3 +77,4 @@ const LoginPopup = ({ setShowLogin }) => {
 }
 
 export default LoginPopup
+
