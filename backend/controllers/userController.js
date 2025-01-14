@@ -5,8 +5,10 @@ import userModel from "../models/userModel.js";
 
 // Create Token
 const createToken = (payload) => {
-    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
+    return jwt.sign(payload, process.env.JWT_SECRET);
+    
 };
+
 
 // Login User
 const loginUser = async (req, res) => {
