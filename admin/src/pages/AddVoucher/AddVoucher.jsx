@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddVoucher.css";
 import { assets, url } from "../../assets/assets";
 import axios from "axios";
@@ -15,18 +15,26 @@ const AddVoucher = () => {
   const [users, setUsers] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
 
-  // const fetchUsers = async () => {
-  //   const response = await axios.get(`${url}/api/user/list`);
-  //   if (response.data.success) {
-  //     setUsers(response.data.data);
-  //   } else {
-  //     toast.error("Error");
-  //   }
-  // };
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(`${url}/api/user/list`);
+      if (response.data.success) {
+        // Filter out users with role "admin"
+        const filteredUsers = response.data.data.filter(
+          (user) => user.role === "user"
+        );
+        setUsers(filteredUsers);
+      } else {
+        toast.error("Error fetching users.");
+      }
+    } catch (error) {
+      toast.error("Network error, please try again.");
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const toggleUserSelection = (userId) => {
     setData((prevData) => {
@@ -55,14 +63,18 @@ const AddVoucher = () => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData();
-    formData.append("amount", Number(data.amount));
-    formData.append("description", data.description);
-    formData.append("selectedUsers", JSON.stringify(data.selectedUsers));
-    formData.append("createdAt", new Date().toISOString());
+    // Double-check values being sent
+    const payload = {
+      amount: Number(data.amount),
+      description: data.description,
+      selectedUsers: data.selectedUsers,
+      createdAt: new Date().toISOString(),
+    };
 
     try {
-      const response = await axios.post(`${url}/api/voucher/add`, formData);
+      const response = await axios.post(`${url}/api/voucher/add`, payload, {
+        headers: { "Content-Type": "application/json" }, // Use JSON for cleaner payload
+      });
       if (response.data.success) {
         toast.success(response.data.message);
         setData({
@@ -112,6 +124,7 @@ const AddVoucher = () => {
             value={data.description}
             rows={6}
             placeholder="Enter description"
+            required
           />
         </div>
 
