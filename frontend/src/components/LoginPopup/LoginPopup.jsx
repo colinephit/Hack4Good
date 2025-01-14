@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 const LoginPopup = ({ setShowLogin }) => {
 
     const { setToken, url,loadCartData } = useContext(StoreContext)
-    const [currState, setCurrState] = useState("Sign Up");
+    const [curState, setCurState] = useState("Sign Up");
 
     const [data, setData] = useState({
         name: "",
@@ -25,17 +25,21 @@ const LoginPopup = ({ setShowLogin }) => {
     const onLogin = async (e) => {
         e.preventDefault();
     
-        let apiUrl = "/api/user/login";
+        let apiUrl = "http://localhost:4000/api/user/login";
         if (curState === "Sign Up") {
-            apiUrl = "/api/user/register";
+            apiUrl = "http://localhost:4000/api/user/register";
         }
     
         try {
-            const response = await axios.post(apiUrl, data);
+            const token = localStorage.getItem("token"); // Retrieve the token from localStorage if required
+            const response = await axios.post(apiUrl, data,{
+                headers: {Authorization: `Bearer ${token}` } 
+            });
+            console.log("Response:", response.data);
     
             if (response.data.success) {
                 // Save token to localStorage
-                localStorage.setItem("token", response.data.token);
+                localStorage.setItem(token, response.data.token);
     
                 // Redirect based on role
                 if (response.data.role === "admin") {
@@ -55,21 +59,21 @@ const LoginPopup = ({ setShowLogin }) => {
         <div className='login-popup'>
             <form onSubmit={onLogin} className="login-popup-container">
                 <div className="login-popup-title">
-                    <h2>{currState}</h2> <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
+                    <h2>{curState}</h2> <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
                 </div>
                 <div className="login-popup-inputs">
-                    {currState === "Sign Up" ? <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name' required /> : <></>}
+                    {curState === "Sign Up" ? <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name' required /> : <></>}
                     <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your email' />
                     <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' required />
                 </div>
-                <button>{currState === "Login" ? "Login" : "Create account"}</button>
+                <button>{curState === "Login" ? "Login" : "Create account"}</button>
                 <div className="login-popup-condition">
                     <input type="checkbox" name="" id="" required/>
                     <p>By continuing, i agree to the terms of use & privacy policy.</p>
                 </div>
-                {currState === "Login"
-                    ? <p>Create a new account? <span onClick={() => setCurrState('Sign Up')}>Click here</span></p>
-                    : <p>Already have an account? <span onClick={() => setCurrState('Login')}>Login here</span></p>
+                {curState === "Login"
+                    ? <p>Create a new account? <span onClick={() => setCurState('Sign Up')}>Click here</span></p>
+                    : <p>Already have an account? <span onClick={() => setCurState('Login')}>Login here</span></p>
                 }
             </form>
         </div>
