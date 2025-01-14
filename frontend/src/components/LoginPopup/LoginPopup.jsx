@@ -23,26 +23,33 @@ const LoginPopup = ({ setShowLogin }) => {
     }
 
     const onLogin = async (e) => {
-        e.preventDefault()
-
-        let new_url = url;
-        if (currState === "Login") {
-            new_url += "/api/user/login";
+        e.preventDefault();
+    
+        let apiUrl = "/api/user/login";
+        if (curState === "Sign Up") {
+            apiUrl = "/api/user/register";
         }
-        else {
-            new_url += "/api/user/register"
+    
+        try {
+            const response = await axios.post(apiUrl, data);
+    
+            if (response.data.success) {
+                // Save token to localStorage
+                localStorage.setItem("token", response.data.token);
+    
+                // Redirect based on role
+                if (response.data.role === "admin") {
+                    window.location.href = "/admin"; // Redirect to admin panel
+                } else {
+                    window.location.href = "/"
+                }
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            toast.error("An error occurred during login. Please try again.");
         }
-        const response = await axios.post(new_url, data);
-        if (response.data.success) {
-            setToken(response.data.token)
-            localStorage.setItem("token", response.data.token)
-            loadCartData({token:response.data.token})
-            setShowLogin(false)
-        }
-        else {
-            toast.error(response.data.message)
-        }
-    }
+    };
 
     return (
         <div className='login-popup'>
@@ -70,3 +77,4 @@ const LoginPopup = ({ setShowLogin }) => {
 }
 
 export default LoginPopup
+

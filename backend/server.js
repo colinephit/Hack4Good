@@ -8,6 +8,8 @@ import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import voucherRouter from "./routes/voucherRoute.js";
 
+console.log('MongoDB URI:', process.env.MONGO_URI);
+
 // app config
 const app = express();
 const port = process.env.PORT || 4000;

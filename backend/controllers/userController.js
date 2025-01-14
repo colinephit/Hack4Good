@@ -4,8 +4,8 @@ import validator from "validator";
 import userModel from "../models/userModel.js";
 
 // Create Token
-const createToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+const createToken = (payload) => {
+    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
 
 // Login User
@@ -22,8 +22,8 @@ const loginUser = async (req, res) => {
             return res.json({ success: false, message: "Invalid credentials" });
         }
 
-        const token = createToken(user._id);
-        res.json({ success: true, token });
+        const token = createToken({id: user._id, role: user.role});
+        res.json({ success: true, token, role: user.role, });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: "Error" });
@@ -55,7 +55,7 @@ const registerUser = async (req, res) => {
         const newUser = new userModel({ name, email, password: hashedPassword });
         const user = await newUser.save();
         const token = createToken(user._id);
-        res.json({ success: true, token });
+        res.json({ success: true, token, role: user.role, });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: "Error" });

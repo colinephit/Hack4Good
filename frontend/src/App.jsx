@@ -7,9 +7,10 @@ import Cart from './pages/Cart/Cart'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import MyOrders from './pages/MyOrders/MyOrders'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Verify from './pages/Verify/Verify'
+import AdminPanel from '../../admin/src/App'; // Add Admin Panel import
 
 const App = () => {
 
@@ -27,9 +28,10 @@ const App = () => {
           <Route path='/order' element={<PlaceOrder />}/>
           <Route path='/myorders' element={<MyOrders />}/>
           <Route path='/verify' element={<Verify />}/>
+          <Route path="/admin/*" element={<AdminPanel />} />
         </Routes>
       </div>
-      <Footer />
+      <Footer />h +
     </>
   )
 }

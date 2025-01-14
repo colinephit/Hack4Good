@@ -9,7 +9,6 @@ import history_icon from "./history_icon.png";
 
 export const url = "http://localhost:4000";
 export const currency = "$";
-
 export const assets = {
   logo,
   add_icon,
@@ -19,4 +18,5 @@ export const assets = {
   parcel_icon,
   voucher_icon,
   history_icon,
+  inventory,
 };
