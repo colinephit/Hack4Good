@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AddVoucher.css";
-import { assets, url } from "../../assets/assets";
+import { currency, assets, url } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -17,10 +17,10 @@ const AddVoucher = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(`${url}/api/user/list`);
+      const response = await axios.get(`${url}/api/user/all`);
       if (response.data.success) {
         // Filter out users with role "admin"
-        const filteredUsers = response.data.data.filter(
+        const filteredUsers = response.data.users.filter(
           (user) => user.role === "user"
         );
         setUsers(filteredUsers);
@@ -28,6 +28,7 @@ const AddVoucher = () => {
         toast.error("Error fetching users.");
       }
     } catch (error) {
+      console.log(error);
       toast.error("Network error, please try again.");
     }
   };
@@ -143,22 +144,33 @@ const AddVoucher = () => {
             </label>
           </div>
           <div className="user-table">
-            {users.map((user) => (
-              <div key={user._id} className="user-row">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={data.selectedUsers.includes(user._id)}
-                    onChange={() => toggleUserSelection(user._id)}
-                  />
-                  <span>{user.name}</span>
-                </label>
-                <p>
-                  {currency}
-                  {user.vouchers || 0} {/* Display user's vouchers */}
-                </p>
-              </div>
-            ))}
+            <div className="user-table-format title">
+              <b> </b>
+              <b>Name</b>
+              <b>Voucher Balance</b>
+            </div>
+            {users.length === 0 ? (
+              <div className="list-table-format"></div>
+            ) : (
+              users.map((user) => {
+                return (
+                  <div key={user._id} className="list-table-format">
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={data.selectedUsers.includes(user._id)}
+                        onChange={() => toggleUserSelection(user._id)}
+                      />
+                    </label>
+                    <p>{user.name}</p>
+                    <p>
+                      {currency}
+                      {user.vouchers == null ? 0 : user.vouchers}
+                    </p>
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
 

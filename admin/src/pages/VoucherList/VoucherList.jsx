@@ -27,7 +27,8 @@ const VoucherList = () => {
 
   useEffect(() => {
     fetchVoucherList();
-  }, []);
+    console.log(selectedVoucherUsers);
+  }, [selectedVoucherUsers]);
 
   return (
     <div className="list add flex-col">
@@ -52,12 +53,12 @@ const VoucherList = () => {
                 {/* Handle displaying users */}
                 <p
                   className="user-count"
-                  onClick={() => handleUserClick(item.users)}
+                  onClick={() => handleUserClick(item.selectedUsers)}
                   style={{ cursor: "pointer", color: "#007bff" }}
                 >
-                  {item.users?.length || 0}
+                  {item.selectedUsers?.length || 0}
                 </p>
-                <p>{new Date(item.createdAt).toLocaleDateString()}</p>{" "}
+                <p>{new Date(item.createdAt).toLocaleString()}</p>{" "}
                 {/* Format date */}
               </div>
             );

@@ -32,7 +32,6 @@ import {
   TableRow,
 } from "../../components/ui/table";
 
-
 // should take the data from the backend? or maybe have data that is mutable
 const data = [
   {
