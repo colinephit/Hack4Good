@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
 
     const url = "http://localhost:4000"
-    const [food_list, setFoodList] = useState([]);
+    const [foodListState, setFoodList] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
     const currency = "$";
@@ -36,7 +36,7 @@ const StoreContextProvider = (props) => {
         for (const item in cartItems) {
             try {
               if (cartItems[item] > 0) {
-                let itemInfo = food_list.find((product) => product._id === item);
+                let itemInfo = foodListState.find((product) => product._id === item);
                 totalAmount += itemInfo.price * cartItems[item];
             }  
             } catch (error) {
