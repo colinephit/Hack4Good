@@ -23,26 +23,6 @@ import shop_9 from './shop9.png'
 import shop_10 from './shop10.png'
 import shop_11 from './shop11.png'
 import shop_12 from './shop12.png'
-import food_13 from './food_13.png'
-import food_14 from './food_14.png'
-import food_15 from './food_15.png'
-import food_16 from './food_16.png'
-import food_17 from './food_17.png'
-import food_18 from './food_18.png'
-import food_19 from './food_19.png'
-import food_20 from './food_20.png'
-import food_21 from './food_21.png'
-import food_22 from './food_22.png'
-import food_23 from './food_23.png'
-import food_24 from './food_24.png'
-import food_25 from './food_25.png'
-import food_26 from './food_26.png'
-import food_27 from './food_27.png'
-import food_28 from './food_28.png'
-import food_29 from './food_29.png'
-import food_30 from './food_30.png'
-import food_31 from './food_31.png'
-import food_32 from './food_32.png'
 
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
@@ -127,7 +107,7 @@ export const food_list = [
         image: shop_1,
         price: 35,
         description: "Durable and versatile pants with multiple pockets for everyday convenience",
-        category: "Salad"
+        category: "Pants"
     },
     {
         _id: "2",
@@ -135,220 +115,76 @@ export const food_list = [
         image: shop_2,
         price: 15,
         description: "Lightweight and casual footwear perfect for lounging or beach days",
-        category: "Salad"
+        category: "Footwear"
     }, {
         _id: "3",
         name: "Sneakers",
         image: shop_3,
         price: 35,
         description: "Comfortable and stylish shoes designed for all-day wear",
-        category: "Salad"
+        category: "Footwear"
     }, {
         _id: "4",
         name: "Hoodies",
         image: shop_4,
         price: 25,
         description: "Cozy and warm pullover essentials for relaxed, casual style",
-        category: "Salad"
+        category: "Tops"
     }, {
         _id: "5",
         name: "Wallet",
         image: shop_5,
         price: 10,
         description: "Sleek and compact design to keep your cash and cards organized",
-        category: "Rolls"
+        category: "Accessories"
     }, {
         _id: "6",
         name: "Bracelets",
         image: shop_6,
         price: 5,
         description: "A stylish accessory to add a personal touch to any outfit",
-        category: "Rolls"
+        category: "Accessories"
     }, {
         _id: "7",
         name: "Running shoes",
         image: shop_7,
         price: 30,
         description: "High-performance footwear for a smooth and supported run",
-        category: "Rolls"
+        category: "Footwear"
     }, {
         _id: "8",
         name: "Backpack",
         image: shop_8,
         price: 15,
         description: "Spacious and durable for carrying your daily essentials",
-        category: "Rolls"
+        category: "Accessories"
     }, {
         _id: "9",
         name: "Chips",
         image: shop_9,
         price: 5,
         description: "Crispy and flavorful snacks for every craving",
-        category: "Deserts"
+        category: "Snacks"
     }, {
         _id: "10",
         name: "Gym Bottle",
         image: shop_10,
         price: 10,
         description: "Sturdy and leak-proof for staying hydrated during workouts",
-        category: "Deserts"
+        category: "Sports"
     }, {
         _id: "11",
         name: "Sunglasses",
         image: shop_11,
         price: 15,
         description: "Trendy and protective eyewear for sunny days",
-        category: "Deserts"
+        category: "Accessories"
     }, {
         _id: "12",
         name: "Perfume",
         image: shop_12,
         price: 12,
         description: "A refreshing fragrance to leave a lasting impression",
-        category: "Deserts"
+        category: "Accessories"
     }
-    // {
-    //     _id: "13",
-    //     name: "Chicken Sandwich",
-    //     image: food_13,
-    //     price: 12,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Sandwich"
-    // },
-    // {
-    //     _id: "14",
-    //     name: "Vegan Sandwich",
-    //     image: food_14,
-    //     price: 18,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Sandwich"
-    // }, {
-    //     _id: "15",
-    //     name: "Grilled Sandwich",
-    //     image: food_15,
-    //     price: 16,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Sandwich"
-    // }, {
-    //     _id: "16",
-    //     name: "Bread Sandwich",
-    //     image: food_16,
-    //     price: 24,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Sandwich"
-    // }, {
-    //     _id: "17",
-    //     name: "Cup Cake",
-    //     image: food_17,
-    //     price: 14,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Cake"
-    // }, {
-    //     _id: "18",
-    //     name: "Vegan Cake",
-    //     image: food_18,
-    //     price: 12,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Cake"
-    // }, {
-    //     _id: "19",
-    //     name: "Butterscotch Cake",
-    //     image: food_19,
-    //     price: 20,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Cake"
-    // }, {
-    //     _id: "20",
-    //     name: "Sliced Cake",
-    //     image: food_20,
-    //     price: 15,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Cake"
-    // }, {
-    //     _id: "21",
-    //     name: "Garlic Mushroom ",
-    //     image: food_21,
-    //     price: 14,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Pure Veg"
-    // }, {
-    //     _id: "22",
-    //     name: "Fried Cauliflower",
-    //     image: food_22,
-    //     price: 22,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Pure Veg"
-    // }, {
-    //     _id: "23",
-    //     name: "Mix Veg Pulao",
-    //     image: food_23,
-    //     price: 10,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Pure Veg"
-    // }, {
-    //     _id: "24",
-    //     name: "Rice Zucchini",
-    //     image: food_24,
-    //     price: 12,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Pure Veg"
-    // },
-    // {
-    //     _id: "25",
-    //     name: "Cheese Pasta",
-    //     image: food_25,
-    //     price: 12,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Pasta"
-    // },
-    // {
-    //     _id: "26",
-    //     name: "Tomato Pasta",
-    //     image: food_26,
-    //     price: 18,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Pasta"
-    // }, {
-    //     _id: "27",
-    //     name: "Creamy Pasta",
-    //     image: food_27,
-    //     price: 16,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Pasta"
-    // }, {
-    //     _id: "28",
-    //     name: "Chicken Pasta",
-    //     image: food_28,
-    //     price: 24,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Pasta"
-    // }, {
-    //     _id: "29",
-    //     name: "Buttter Noodles",
-    //     image: food_29,
-    //     price: 14,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Noodles"
-    // }, {
-    //     _id: "30",
-    //     name: "Veg Noodles",
-    //     image: food_30,
-    //     price: 12,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Noodles"
-    // }, {
-    //     _id: "31",
-    //     name: "Somen Noodles",
-    //     image: food_31,
-    //     price: 20,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Noodles"
-    // }, {
-    //     _id: "32",
-    //     name: "Cooked Noodles",
-    //     image: food_32,
-    //     price: 15,
-    //     description: "Food provides essential nutrients for overall health and well-being",
-    //     category: "Noodles"
-    // }
 ]
