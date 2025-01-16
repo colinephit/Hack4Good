@@ -10,7 +10,7 @@ const VoucherList = () => {
 
   const fetchVoucherList = async () => {
     try {
-      const response = await axios.get(`${url}/api/voucher/list`);
+      const response = await axios.get(`${url}/all`);
       if (response.data.success) {
         setVoucherList(response.data.data);
       } else {

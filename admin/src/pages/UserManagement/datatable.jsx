@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -31,40 +31,52 @@ import {
   TableHeader,
   TableRow,
 } from "../../components/ui/table";
+import { currency, assets, url } from "../../assets/assets";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+// import {
+//   getAllUsers,
+//   addUser,
+//   updateUser,
+//   deleteUser,
+// } from "../../../../backend/controllers/userController"
 
 // should take the data from the backend? or maybe have data that is mutable
-const data = [
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "active",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "active",
-    email: "Abe45@gmail.com",
-  },
-  {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@gmail.com",
-  },
-  {
-    id: "5kma53ae",
-    amount: 874,
-    status: "active",
-    email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "banned",
-    email: "carmella@hotmail.com",
-  },
-];
+// const data = [
+//   {
+//     id: "m5gr84i9",
+//     amount: 316,
+//     status: "active",
+//     email: "ken99@yahoo.com",
+//   },
+//   {
+//     id: "3u1reuv4",
+//     amount: 242,
+//     status: "active",
+//     email: "Abe45@gmail.com",
+//   },
+//   {
+//     id: "derv1ws0",
+//     amount: 837,
+//     status: "processing",
+//     email: "Monserrat44@gmail.com",
+//   },
+//   {
+//     id: "5kma53ae",
+//     amount: 874,
+//     status: "active",
+//     email: "Silas22@gmail.com",
+//   },
+//   {
+//     id: "bhqecj4p",
+//     amount: 721,
+//     status: "banned",
+//     email: "carmella@hotmail.com",
+//   },
+// ];
+
+// const data = getAllUsers();
 
 const columns = [
   {
@@ -97,25 +109,25 @@ const columns = [
     ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "number",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Number
           <ArrowUpDown />
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => <div className="lowercase">{row.getValue("number")}</div>,
   },
   {
-    accessorKey: "amount",
+    accessorKey: "__v",
     header: () => <div className="text-right">Voucher Credit</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
+      const amount = parseFloat(row.getValue("__v"));
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
@@ -162,9 +174,26 @@ export function DataTableDemo() {
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
+  const [users, setUsers] = useState([]);
 
+
+  console.log("checking");
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(`${url}/api/user/all`);
+      console.log(response.data);
+      setUsers(response.data); // Set the data in state
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+
+  fetchUsers(); // Call the function
+
+  // const data = await fetchData();
+  console.log("Data:", users);
   const table = useReactTable({
-    data,
+    users,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -186,10 +215,10 @@ export function DataTableDemo() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={table.getColumn("email")?.getFilterValue() || ""}
+          placeholder="Filter numbers..."
+          value={table.getColumn("number")?.getFilterValue() || ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("number")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
