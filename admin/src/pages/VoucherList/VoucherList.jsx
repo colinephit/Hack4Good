@@ -21,8 +21,23 @@ const VoucherList = () => {
     }
   };
 
-  const handleUserClick = (users) => {
+  const handleUserClick = async (users) => {
     setSelectedVoucherUsers(users); // Store selected users to show in the popup
+    fetchUsersByIds(users);
+  };
+
+  const fetchUsersByIds = async (userIds) => {
+    try {
+      // Fetch users based on the selected user IDs
+      const response = await axios.post(`${url}/api/user/spec`, { userIds });
+      if (response.data.success) {
+        setSelectedVoucherUsers(response.data.users); // Store fetched users' data
+      } else {
+        toast.error("Error fetching users.");
+      }
+    } catch (error) {
+      toast.error("Network error, please try again.");
+    }
   };
 
   useEffect(() => {
@@ -31,20 +46,20 @@ const VoucherList = () => {
   }, [selectedVoucherUsers]);
 
   return (
-    <div className="list add flex-col">
-      <div className="list-table">
-        <div className="list-table-format title">
+    <div className="voucherlist add flex-col">
+      <div className="voucherlist-table">
+        <div className="voucherlist-table-format title">
           <b>Amount</b>
           <b>Description</b>
           <b>Users</b>
           <b>Date Issued</b>
         </div>
         {voucherList.length === 0 ? (
-          <div className="list-table-format"></div>
+          <div className="voucherlist-table-format"></div>
         ) : (
           voucherList.map((item, index) => {
             return (
-              <div key={index} className="list-table-format">
+              <div key={index} className="voucherlist-table-format">
                 <p>
                   {currency}
                   {item.amount}
@@ -68,15 +83,23 @@ const VoucherList = () => {
 
       {/* Modal to show the list of users */}
       {selectedVoucherUsers && (
-        <div className="user-modal">
-          <div className="modal-content">
-            <h3>Users Assigned to Voucher</h3>
-            <ul>
-              {selectedVoucherUsers.map((user, index) => (
-                <li key={index}>{user}</li>
-              ))}
-            </ul>
-            <button onClick={() => setSelectedVoucherUsers(null)}>Close</button>
+        <div className="userlist-table">
+          <div className="userlist-table-format title">
+            <b>Users Assigned</b>
+            <b>
+              {" "}
+              <button
+                onClick={() => setSelectedVoucherUsers(null)}
+                style={{ color: "red" }}
+              >
+                Close
+              </button>
+            </b>
+          </div>
+          <div className="userlist-table-format">
+            {selectedVoucherUsers.map((user, index) => (
+              <p key={index}>{user.name}</p>
+            ))}
           </div>
         </div>
       )}

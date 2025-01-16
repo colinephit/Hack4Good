@@ -1,4 +1,5 @@
 import voucherModel from "../models/voucherModel.js";
+import userModel from "../models/userModel.js";
 import fs from "fs";
 
 // all food list
@@ -15,6 +16,8 @@ const listVoucher = async (req, res) => {
 // add voucher
 const addVoucher = async (req, res) => {
   try {
+    const { amount, description, selectedUsers, createdAt } = req.body;
+
     const voucher = new voucherModel({
       amount: req.body.amount,
       description: req.body.description,
@@ -23,6 +26,14 @@ const addVoucher = async (req, res) => {
     });
 
     await voucher.save();
+
+    if (selectedUsers && selectedUsers.length > 0) {
+      await userModel.updateMany(
+        { _id: { $in: selectedUsers } },
+        { $inc: { amount } } // Increment the user's amount by the voucher's amount
+      );
+    }
+
     res.json({ success: true, message: "Voucher Added" });
   } catch (error) {
     console.log(error);
