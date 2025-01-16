@@ -3,6 +3,7 @@ import {
   loginUser,
   registerUser,
   getAllUsers,
+  getUsersByIds,
   updateUser,
   deleteUser,
   addUser,
@@ -24,6 +25,7 @@ userRouter.post("/login", loginUser); // Login route (public)
 
 // Admin-only routes
 userRouter.get("/all", getAllUsers); // Admin: Get all users
+userRouter.post("/spec", getUsersByIds); // Admin: Get all users
 userRouter.post("/", addUser); // Admin: Add new user
 userRouter.put("/:id", updateUser); // Admin: Update user by ID
 userRouter.delete("/:id", deleteUser); // Admin: Delete user by ID

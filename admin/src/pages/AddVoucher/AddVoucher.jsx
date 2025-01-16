@@ -165,7 +165,7 @@ const AddVoucher = () => {
                     <p>{user.name}</p>
                     <p>
                       {currency}
-                      {user.vouchers == null ? 0 : user.vouchers}
+                      {user.amount}
                     </p>
                   </div>
                 );

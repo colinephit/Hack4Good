@@ -51,7 +51,11 @@ const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new userModel({ name, number, password: hashedPassword });
+    const newUser = new userModel({
+      name,
+      number,
+      password: hashedPassword,
+    });
     const user = await newUser.save();
     const token = createToken(user._id);
     res.json({ success: true, token, role: user.role });
@@ -65,6 +69,18 @@ const registerUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
   try {
     const users = await userModel.find({}, "-password"); // Exclude passwords
+    res.status(200).json({ success: true, users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error fetching users" });
+  }
+};
+
+// Admin: Get User Details by IDs
+const getUsersByIds = async (req, res) => {
+  try {
+    const { userIds } = req.body;
+    const users = await userModel.find({ _id: { $in: userIds } }, "-password"); // Exclude passwords
     res.status(200).json({ success: true, users });
   } catch (error) {
     console.error(error);
@@ -151,6 +167,7 @@ export {
   loginUser,
   registerUser,
   getAllUsers, // Admin-specific
+  getUsersByIds,
   addUser, // Admin-specific
   updateUser, // Admin-specific
   deleteUser, // Admin-specific
