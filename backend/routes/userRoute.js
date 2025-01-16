@@ -4,7 +4,7 @@ import {
   registerUser,
   getAllUsers,
   getUsersByIds,
-  updateUser,
+  toggleUserStatus,
   deleteUser,
   addUser,
 } from "../controllers/userController.js";
@@ -17,17 +17,12 @@ const userRouter = express.Router();
 userRouter.post("/register", registerUser); // Registration route (public)
 userRouter.post("/login", loginUser); // Login route (public)
 
-// Admin-only routes
-// userRouter.get("/all", authMiddleware, isAdmin, getAllUsers); // Admin: Get all users
-// userRouter.post("/", authMiddleware, isAdmin, addUser); // Admin: Add new user
-// userRouter.put("/:id", authMiddleware, isAdmin, updateUser); // Admin: Update user by ID
-// userRouter.delete("/:id", authMiddleware, isAdmin, deleteUser); // Admin: Delete user by ID
 
 // Admin-only routes
 userRouter.get("/all", getAllUsers); // Admin: Get all users
 userRouter.post("/spec", getUsersByIds); // Admin: Get all users
 userRouter.post("/", addUser); // Admin: Add new user
-userRouter.put("/:id", updateUser); // Admin: Update user by ID
+userRouter.put("/toggle-status/:id", toggleUserStatus); // Admin: Update user by ID
 userRouter.delete("/:id", deleteUser); // Admin: Delete user by ID
 
 export default userRouter;
