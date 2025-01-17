@@ -124,25 +124,47 @@ const addUser = async (req, res) => {
   }
 };
 
-// Admin: Update a User
-const updateUser = async (req, res) => {
-  const { id } = req.params;
-  const updates = req.body;
+// Admin: Toggle User Status
+const toggleUserStatus = async (req, res) => {
+  const { id } = req.params; // Get user ID from request parameters
+
   try {
-    const updatedUser = await userModel.findByIdAndUpdate(id, updates, {
-      new: true,
-    });
-    if (!updatedUser) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+    // Find the user by ID
+    const user = await userModel.findById(id);
+
+    // Check if user exists
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
     }
-    res.status(200).json({ success: true, user: updatedUser });
+
+    // Toggle the status: if "active", set to "disabled"; if "disabled", set to "active"
+    const updatedStatus = user.status === "active" ? "disabled" : "active";
+
+    // Update the user's status
+    const updatedUser = await userModel.findByIdAndUpdate(
+      id,
+      { status: updatedStatus },
+      { new: true } // Return the updated document
+    );
+
+    // Respond with success and updated user data
+    res.status(200).json({
+      success: true,
+      message: `User status changed to ${updatedStatus}`,
+      user: updatedUser,
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: "Error updating user" });
+    console.error("Error toggling user status:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error occurred while toggling user status",
+    });
   }
 };
+
 
 // Admin: Delete a User
 const deleteUser = async (req, res) => {
@@ -169,6 +191,6 @@ export {
   getAllUsers, // Admin-specific
   getUsersByIds,
   addUser, // Admin-specific
-  updateUser, // Admin-specific
+  toggleUserStatus, // Admin-specific
   deleteUser, // Admin-specific
 };
