@@ -46,9 +46,6 @@ const List = () => {
     } else {
       toast.error("Error");
     }
-    else {
-      toast.error("Error")
-    }
   }
   const handleQuantityChange = (foodId, newQuantity) => {
     setQuantities((prev) => ({

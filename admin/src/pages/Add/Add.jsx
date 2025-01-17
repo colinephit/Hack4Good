@@ -46,7 +46,7 @@ const Add = () => {
             toast.error(response.data.message)
         }
     }
-  };
+  
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
