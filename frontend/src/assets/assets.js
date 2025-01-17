@@ -66,38 +66,38 @@ export const assets = {
     un_checked
 }
 
-export const menu_list = [
+export const shop_list = [
     {
-        menu_name: "Tops",
-        menu_image: item_1
+        shop_name: "Tops",
+        shop_image: item_1
     },
     {
-        menu_name: "Pants",
-        menu_image: item_2
+        shop_name: "Pants",
+        shop_image: item_2
     },
     {
-        menu_name: "Footwear",
-        menu_image: item_3
+        shop_name: "Footwear",
+        shop_image: item_3
     },
     {
-        menu_name: "Self Care",
-        menu_image: item_4
+        shop_name: "Self Care",
+        shop_image: item_4
     },
     {
-        menu_name: "Accessories",
-        menu_image: item_5
+        shop_name: "Accessories",
+        shop_image: item_5
     },
     {
-        menu_name: "Stationary",
-        menu_image: item_6
+        shop_name: "Stationary",
+        shop_image: item_6
     },
     {
-        menu_name: "Snacks",
-        menu_image: item_7
+        shop_name: "Snacks",
+        shop_image: item_7
     },
     {
-        menu_name: "Sports",
-        menu_image: item_8
+        shop_name: "Sports",
+        shop_image: item_8
     }]
 
 export const food_list = [

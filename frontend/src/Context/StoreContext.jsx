@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { food_list, menu_list } from "../assets/assets";
+import { food_list, shop_list } from "../assets/assets";
 import axios from "axios";
 export const StoreContext = createContext(null);
 
@@ -78,7 +78,7 @@ const StoreContextProvider = (props) => {
   const contextValue = {
     url,
     food_list,
-    menu_list,
+    shop_list,
     cartItems,
     addToCart,
     removeFromCart,
