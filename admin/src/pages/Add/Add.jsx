@@ -12,7 +12,7 @@ const Add = () => {
         name: "",
         description: "",
         price: "",
-        category: "Salad"
+        category: "Tops"
     });
 
     const onSubmitHandler = async (event) => {
@@ -28,6 +28,7 @@ const Add = () => {
         formData.append("description", data.description);
         formData.append("price", Number(data.price));
         formData.append("category", data.category);
+        formData.append("quantity", data.quantity);
         formData.append("image", image);
         const response = await axios.post(`${url}/api/food/add`, formData);
         if (response.data.success) {
@@ -36,7 +37,8 @@ const Add = () => {
                 name: "",
                 description: "",
                 price: "",
-                category: data.category
+                category: data.category,
+                quantity: 0,
             })
             setImage(false);
         }
@@ -86,6 +88,10 @@ const Add = () => {
                     <div className='add-price flex-col'>
                         <p>Product Price</p>
                         <input type="Number" name='price' onChange={onChangeHandler} value={data.price} placeholder='25' />
+                    </div>
+                    <div className='add-quantity flex-col'>
+                        <p>Quantity</p>
+                        <input type='Number' name='quantity' onChange={onChangeHandler} value={data.quantity} placeholder='1'></input>
                     </div>
                 </div>
                 <button type='submit' className='add-btn' >ADD</button>

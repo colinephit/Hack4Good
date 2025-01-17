@@ -1,6 +1,6 @@
-.list-table-format{
+.item-table{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 0.5fr;
     align-items: center;
     gap: 10px;
     padding: 12px 15px;
@@ -10,16 +10,31 @@
 .list-table-format.title{
     background-color: #f9f9f9;
 }
-.list-table-format img{
+.item-table img{
     width: 50px;
 }
-@media(max-width:600px){
+@media(max-width:60px){
 
-    .list-table-format{
-        grid-template-columns: 1fr 3fr 1fr;
+    .item-table{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         gap: 15px;
     }
-    .list-table-format.title{
+    .item-table.title{
         display: none;
     }
 }
+
+.quantity-input {
+    width: 50px;
+    padding: 4px;
+    text-align: center;
+    border: 1px solid #cacaca;
+    border-radius: 4px;
+  }
+
+/* .img {
+    width: 50%; 
+    height: auto;    
+    object-fit: cover;
+  } 
+  */

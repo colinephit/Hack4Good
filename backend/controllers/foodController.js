@@ -24,6 +24,7 @@ const addFood = async (req, res) => {
             description: req.body.description,
             price: req.body.price,
             category:req.body.category,
+            quantity: req.body.quantity,
             image: image_filename,
         })
 
@@ -52,4 +53,27 @@ const removeFood = async (req, res) => {
 
 }
 
-export { listFood, addFood, removeFood }
+// update quantity
+const updateFood = async (req, res) => {
+    try {
+        const { id, quantity } = req.body;
+        const food = await foodModel.findById(id);
+
+        if (!food) {
+        return res.json({ success: false, message: "Food item not found" });
+        }
+
+        // Update the quantity
+        food.quantity = quantity;
+
+        // Save the updated food item
+        await food.save();
+
+        res.json({ success: true, message: "Quantity updated successfully" });
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: "Error updating quantity" });
+    }
+}
+
+export { listFood, addFood, removeFood, updateFood }
