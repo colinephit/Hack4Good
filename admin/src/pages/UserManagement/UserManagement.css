@@ -1,6 +1,6 @@
 .userlist-table-format {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   gap: 10px;
   padding: 12px 15px;
@@ -9,7 +9,7 @@
 }
 .userlist-table-format {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   gap: 10px;
   padding: 12px 15px;
@@ -24,6 +24,16 @@
 }
 .userlist-table-format img {
   width: 50px;
+}
+
+.status-active {
+  color: green;
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: red;
+  font-weight: bold;
 }
 @media (max-width: 600px) {
   .userlist-table-format {
