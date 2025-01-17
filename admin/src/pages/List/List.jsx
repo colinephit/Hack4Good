@@ -18,11 +18,10 @@ const List = () => {
         return acc;
       }, {});
       setQuantities(initialQuantities);
+    } else {
+      toast.error("Error");
     }
-    else {
-      toast.error("Error")
-    }
-  }
+  };
 
   const updateQuantity = async (foodId) => {
     const response = await axios.post(`${url}/api/food/update`, {
@@ -30,12 +29,12 @@ const List = () => {
       quantity: quantities[foodId],
     });
     if (response.data.success) {
-      toast.success('Quantity updated!');
+      toast.success("Quantity updated!");
     } else {
-      toast.error('Error updating quantity');
+      toast.error("Error updating quantity");
     }
   };
-  
+
   const removeFood = async (foodId) => {
     const response = await axios.post(`${url}/api/food/remove`, {
       id: foodId,
@@ -46,7 +45,7 @@ const List = () => {
     } else {
       toast.error("Error");
     }
-  }
+  };
   const handleQuantityChange = (foodId, newQuantity) => {
     setQuantities((prev) => ({
       ...prev,
@@ -54,15 +53,14 @@ const List = () => {
     }));
   };
 
-
   useEffect(() => {
     fetchList();
   }, []);
 
   return (
-    <div className='list add flex-col'>
+    <div className="list add flex-col">
       <p>All Items List</p>
-      <div className='list-table'>
+      <div className="list-table">
         <div className="item-table title flex-row">
           <b>Image</b>
           <b>Name</b>
@@ -73,19 +71,28 @@ const List = () => {
         </div>
         {list.map((item, index) => {
           return (
-            <div key={index} className='item-table flex-row'>
-              <img className='image' src={`${url}/images/` + item.image} alt="" />
+            <div key={index} className="item-table flex-row">
+              <img
+                className="image"
+                src={`${url}/images/` + item.image}
+                alt=""
+              />
               <p>{item.name}</p>
               <p>{item.category}</p>
-              <p>{currency}{item.price}</p>
+              <p>
+                {currency}
+                {item.price}
+              </p>
               <input
                 type="number"
-                value={quantities[item._id] || ''}
+                value={quantities[item._id] || ""}
                 onChange={(e) => handleQuantityChange(item._id, e.target.value)}
                 onBlur={() => updateQuantity(item._id)} // Optional: Save when focus is lost
                 className="quantity-input"
               />
-              <p className='cursor' onClick={() => removeFood(item._id)}>x</p>
+              <p className="cursor" onClick={() => removeFood(item._id)}>
+                x
+              </p>
             </div>
           );
         })}
