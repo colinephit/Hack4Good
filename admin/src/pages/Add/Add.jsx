@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import './Add.css'
-import { assets, url } from '../../assets/assets';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import React, { useState } from "react";
+import "./Add.css";
+import { assets, url } from "../../assets/assets";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Add = () => {
 
@@ -15,13 +15,13 @@ const Add = () => {
         category: "Tops"
     });
 
-    const onSubmitHandler = async (event) => {
-        event.preventDefault();
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
 
-        if (!image) {
-            toast.error('Image not selected');
-            return null;
-        }
+    if (!image) {
+      toast.error("Image not selected");
+      return null;
+    }
 
         const formData = new FormData();
         formData.append("name", data.name);
@@ -46,12 +46,14 @@ const Add = () => {
             toast.error(response.data.message)
         }
     }
+  };
 
-    const onChangeHandler = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setData(data => ({ ...data, [name]: value }))
-    }
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    console.log(value);
+    setData((data) => ({ ...data, [name]: value }));
+  };
 
     return (
         <div className='add'>
@@ -100,4 +102,4 @@ const Add = () => {
     )
 }
 
-export default Add
+export default Add;

@@ -38,13 +38,14 @@ const LoginPopup = ({ setShowLogin }) => {
 
       if (response.data.success) {
         // Save token to localStorage
-        localStorage.setItem(token, response.data.token);
+        localStorage.setItem("token", response.data.token);
 
         // Redirect based on role
         if (response.data.role === "admin") {
           window.location.href = "/admin"; // Redirect to admin panel
         } else {
           window.location.href = "/";
+          console.log("Token in LocalStorage:", localStorage.getItem("token"));
         }
       } else {
         toast.error(response.data.message);

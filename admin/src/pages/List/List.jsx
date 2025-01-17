@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import './List.css'
-import { url, currency } from '../../assets/assets'
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import "./List.css";
+import { url, currency } from "../../assets/assets";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const List = () => {
-
   const [list, setList] = useState([]);
   const [quantities, setQuantities] = useState({});
 
   const fetchList = async () => {
-    const response = await axios.get(`${url}/api/food/list`)
+    const response = await axios.get(`${url}/api/food/list`);
     if (response.data.success) {
       setList(response.data.data);
 
@@ -39,11 +38,13 @@ const List = () => {
   
   const removeFood = async (foodId) => {
     const response = await axios.post(`${url}/api/food/remove`, {
-      id: foodId
-    })
+      id: foodId,
+    });
     await fetchList();
     if (response.data.success) {
       toast.success(response.data.message);
+    } else {
+      toast.error("Error");
     }
     else {
       toast.error("Error")
@@ -59,7 +60,7 @@ const List = () => {
 
   useEffect(() => {
     fetchList();
-  }, [])
+  }, []);
 
   return (
     <div className='list add flex-col'>
@@ -89,11 +90,11 @@ const List = () => {
               />
               <p className='cursor' onClick={() => removeFood(item._id)}>x</p>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default List
+export default List;
